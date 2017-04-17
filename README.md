@@ -1,26 +1,24 @@
 # vAPI
 
-vAPI is an API written specifically to illustrate common API vulnerabilities.
-
-vAPI is implemented using the Bottle Python Framework and consists of a user database and a token database.
+vAPI illustrates some common API vulnerabilities
 
 ## Installation
 
 * Install Docker
 * Run `docker build -t vapi .`
-* Run `docker run -tid -p 8081:8081 --name vapi vapi:latest`
+* Run `docker run -itd -p 8081:8081 --name vapi vapi:latest`
 * API will be accessible at `localhost:8081`
 
 ## Flow
 
 1. Request token from `/tokens`
-  * Returns an auth token
-  * Returns expiration date of auth token
-  * Returns a user id
+    * Returns an auth token
+    * Returns expiration date of auth token
+    * Returns a user id
 2. Request user record from `/user/<user_id>`
-  * Requires the auth token
-  * Returns the user record for the user specfied, provided the auth token is not expired and is valid for the user id specified
-  * Each user can only access their own record
+    * Requires the auth token
+    * Returns the user record for the user specfied, provided the auth token is not expired and is valid for the user id specified
+    * Each user can only access their own record
 
 ## Test users
 
@@ -33,7 +31,7 @@ Included by default
 
 ## API reference
 
-##### POST /tokens
+#### POST /tokens
 
 Request an auth token for a user
 
@@ -57,7 +55,7 @@ Request an auth token for a user
 
 ###### Status Code
 
-1. 200 OK - Request completed successfullyi
+1. 200 OK - Request completed successfully
 
 ###### Request
 
@@ -118,7 +116,7 @@ Content-Type: text/html; charset=UTF-8
 }
 ```
 
-##### GET /user/USER\_ID
+#### GET /user/USER\_ID
 
 Retrieve the user's entry in the user database
 
@@ -135,9 +133,9 @@ Retrieve the user's entry in the user database
 ###### Response JSON Object
 
 1. User
-  * id (string) - Unique user ID
-  * name (string) - Username
-  * password (string) - Password
+    * id (string) - Unique user ID
+    * name (string) - Username
+    * password (string) - Password
 
 ###### Status Codes
 
@@ -177,12 +175,13 @@ Content-Type: application/json
 }
 ```
 
-##### POST /user
+#### POST /user
 
 Creates an user with the given username and password.
+
 Conditions:
   1. User cannot already exist
-  2. Username has to meet strict naming guidlines. The username must be matched by this regular expression: ```([a-z]+)*[0-9]```. This means that a username has to start with a lowercase letter and end with numbers. So, usernames that look like "user1" or "abc123" will be accepted, but usernames that look like "USER1" or "1user" will not be accepted.
+  2. Username should match the regex: `([a-z]+)*[0-9]`. This means that a username has to start with a lowercase letter and end with numbers. So, usernames that look like "user1" or "abc123" will be accepted, but usernames that look like "USER1" or "1user" will not be accepted.
 
 ###### Request Headers
 
@@ -191,15 +190,15 @@ Conditions:
 ###### Request JSON Object
 
 1. User
-  * name (string) - Username that matches above conditions
-  * password (string) - Password
+    * name (string) - Username that matches above conditions
+    * password (string) - Password
 
 ###### Response JSON Object
 
 1. response
-  * user
-    - username - the name of the succesfully created user
-    - password - the password of the successfully created user
+    * user
+        - username - the name of the succesfully created user
+        - password - the password of the successfully created user
 
 ###### Status Code
 
@@ -243,9 +242,7 @@ Content-Type: application/json
 }
 ```
 
-##### GET /uptime
-
-##### GET /uptime/FLAG
+#### GET /uptime or GET /uptime/FLAG
 
 Returns the server uptime, and now supports pretty formatting just by passing in command line flags.
 
@@ -256,8 +253,8 @@ Returns the server uptime, and now supports pretty formatting just by passing in
 ###### Response JSON Object
 
 1. Response
-  * Command (string) - The system call you made
-  * Output (string) - uptime
+    * Command (string) - The system call you made
+    * Output (string) - uptime
 
 ###### Status Codes
 
@@ -294,7 +291,7 @@ Content-Type: text/html; charset=UTF-8
 
 ### List of vulnerabilities
 
-1. Transport Layer Security
+1. Transport layer security
 2. User enumeration
 3. Information exposure through server headers
 4. Authentication bypass
@@ -304,6 +301,5 @@ Content-Type: text/html; charset=UTF-8
 8. Session management
 9. Encryption
 10. Auth bypass
-11. Command Injection
+11. Command injection
 12. Regex DDoS
-
