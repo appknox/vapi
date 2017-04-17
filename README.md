@@ -2,33 +2,7 @@
 
 This repository contains an example Python API that is vulnerable to several different web API attacks.
 
-## Installation
-
-We will be using docker images and containers to install all the api. 
-
-### MacOSX
-
-* Download the latest version of [docker toolbox](https://www.docker.com/products/docker-toolbox)
-* Go through installation steps
-* Start up Kitematic ![kitematic](kitematic.png).
-* In the search box type `mkam/vulnerable-api-demo` and click create ![create](create.png).
-* On right side you will see an IP:PORT access url ![ip](ip.png).
-* Copy it and paste into browser to navigate to the api ![browser](browser.png).
-* Jump to [Install Burp Proxy](#install-burp-proxy)
-
-### Windows
-
-***YOU WILL NEED ADMIN RIGHTS TO INSTALL***
-
-* Download the latest version of [docker toolbox](https://www.docker.com/products/docker-toolbox)
-* Go through installation steps
-* Start up Kitematic ![kitematic](kitematic_win.png).
-* In the search box type `mkam/vulnerable-api-demo` and click create ![create](create.png).
-* On right side you will see an IP:PORT access url ![ip](ip.png).
-* Copy it and paste into browser to navigate to the api ![browser](browser.png).
-* Jump to [Install Burp Proxy](#install-burp-proxy)
-
-### Linux
+### Installation
 
 * Install docker engine and docker client [on docker website](https://docs.docker.com/engine/installation/linux/ubuntulinux/)
 * Run `docker run -tid -p 8081:8081 --name api mkam/vulnerable-api-demo`
@@ -38,8 +12,7 @@ We will be using docker images and containers to install all the api.
 
 * Install java [from oracle website](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) if you don't have it already
 * Download jar file from [burp website](https://portswigger.net/burp/downloadfree.html)
-* Run java -jar burpsuite_free_v1.6.32.jar
-
+* Run `java -jar burpsuite_free_v1.6.32.jar`
 
 ## API Details
 
@@ -77,7 +50,7 @@ Included with install
 
 ##### URL
 
-SYSTEM_IP:8081
+SYSTEM\_IP:8081
 
 ##### POST /tokens
 Request an Auth Token for a user
@@ -162,7 +135,7 @@ Content-Type: text/html; charset=UTF-8
 }
 ```
 
-##### GET /user/USER_ID
+##### GET /user/USER\_ID
 Retrieve the user's entry in the user database
 
 ###### Request Headers
